@@ -2,7 +2,7 @@
 
 ## Part 0
 - Step 0.1, http_req_duration: avg=347.9ms min=347.9ms med=347.9ms max=347.9ms p(90)=347.9ms p(95)=347.9ms
-- Step 0.2, requests, rate and p(95), and why the rate stays below 5:
+- Step 0.2, requests, rate and p(95), and why the rate stays below 5: 66 requests, 3.11 req/s (3.105355/s), p(95)=2.02s. The rate stays below 5 req/s because in each iteration a virtual user must wait for the HTTP response (avg ~530ms) AND then execute `sleep(1)` (1 second think time), so one iteration takes ~1.57s (> 1s) per user, limiting 5 users to ~3.11 req/s total.
 - Step 0.6, exit code of the normal run and of the run with P95=300:
 - Step 0.7, rules that passed, p(95), p(99), exit code after your change:
 - Step 0.8, what was wrong, and how the checks showed it:
